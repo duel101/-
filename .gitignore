@@ -1,0 +1,5 @@
+node_modules
+.vscode
+failed.txt
+cards.backup.json
+ko.csv

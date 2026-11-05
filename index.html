@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yu-Gi-Oh Card Editor</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Yu-Gi-Oh! Card Editor</h1>
+  <p>티어메이커용 유희왕 이미지 편집기</p>
+
+  <div class="editor">
+    <div class="preview">
+      <h2>미리보기</h2>
+      <div class="card">
+        <div class="slots" id="slots"></div>
+        <div class="name-box">
+          <div id="previewText" contenteditable="true" data-placeholder="덱 이름 입력"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <h2>편집 도구</h2>
+
+      <label for="fontSize">글자 크기</label>
+      <input type="number" id="fontSize" min="1" max="300" value="60">
+
+      <div class="layout-buttons">
+        <button data-layout="1" class="active">원본</button>
+        <button data-layout="2">2분할</button>
+        <button data-layout="3">3분할</button>
+      </div>
+
+      <div class="reset-buttons">
+        <button id="clearSlotBtn">선택한 칸 비우기</button>
+        <button id="clearAllBtn">사진 전체 초기화</button>
+      </div>
+
+      <div class="search">
+        <input id="searchInput" type="text" placeholder="카드 이름 검색">
+        <button id="searchBtn">검색</button>
+        <div id="results"></div>
+      </div>
+
+      <button id="downloadBtn">이미지로 저장 (PNG)</button>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

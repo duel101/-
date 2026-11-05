@@ -1,0 +1,219 @@
+
+body {
+  background: #171717;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.editor {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.preview, .controls {
+  background: #292929;
+  padding: 25px;
+  border-radius: 12px;
+  width: 564px;           /* 카드 514 + 좌우 padding 25*2 */
+  flex: none;
+  box-sizing: border-box;
+}
+
+
+.card {
+  position: relative;
+  height: 512px;
+  width: 514px;
+  background: #e8d3a0;
+  color: black;
+  border: 5px solid #99743d;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 0;
+}
+
+.name-box {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4.15cm;
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;      /* 세로 가운데 */
+  justify-content: center;  /* 가로 가운데 */
+  padding: 10px;
+  box-sizing: border-box;
+  cursor: text;
+}
+
+input {
+  padding: 10px;
+}
+
+#fontSize {
+  width: 90px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.form-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#previewText {
+  max-width: 100%;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-all;
+  text-align: center;
+  outline: none;
+  min-width: 1em;
+  font-family: 'Pretendard', Arial, sans-serif;
+  font-weight: bold;
+}
+
+/* 비어 있을 때 안내 문구 */
+#previewText:empty::before {
+  content: attr(data-placeholder);
+  opacity: 0.4;
+}
+
+.card {
+  background-size: cover;
+  background-position: center;
+}
+
+.search {
+  margin-top: 24px;
+}
+
+#searchInput {
+  width: 300px;
+}
+
+#searchBtn {
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+#results {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 90px);
+  gap: 8px;
+  justify-content: center;
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+#results img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#results img:hover {
+  outline: 2px solid #e8d3a0;
+}
+
+.msg {
+  grid-column: 1 / -1;
+  opacity: 0.7;
+}
+
+#downloadBtn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* 저장하는 순간에는 안내 문구를 숨김 */
+.exporting #previewText:empty::before {
+  content: none;
+}
+
+:root {
+  --name-h: 157px; /* 검은 상자 높이와 같게 */
+}
+
+.name-box {
+  height: var(--name-h);
+  z-index: 2;
+}
+
+.slots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+}
+
+.slot {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;          /* 1장 모드: 꽉 채움 */
+  cursor: pointer;
+}
+
+.slots.split .slot {
+  background-size: 100% 100%;   /* 자르지 않고 칸 전체를 채움 (비율은 칸에 맞춰 늘어남) */
+}
+
+.slots.split .slot.active::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(77, 163, 255, 0.3);
+}
+
+/* 빈 칸 번호 안내 */
+.slots.split .slot:not(.filled)::after {
+  content: attr(data-n);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  opacity: 0.25;
+}
+
+/* 저장할 때는 표시 숨김 */
+.exporting .slot::after { display: none; }
+
+.layout-buttons {
+  margin: 16px 0;
+}
+
+.layout-buttons button {
+  padding: 8px 16px;
+  margin: 0 4px;
+  cursor: pointer;
+}
+
+.layout-buttons button.active {
+  background: #e8d3a0;
+  font-weight: bold;
+}
+
+.reset-buttons {
+  margin-bottom: 16px;
+}
+
+.reset-buttons button {
+  padding: 8px 16px;
+  margin: 0 4px;
+  cursor: pointer;
+}
